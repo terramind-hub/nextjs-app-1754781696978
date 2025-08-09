@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+:root {
+  --background: oklch(100% 0 0);
+  --foreground: oklch(15% 0 0);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(15% 0 0);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(15% 0 0);
+  --primary: oklch(47% 0.224 262);
+  --primary-foreground: oklch(98% 0 0);
+  --secondary: oklch(96% 0 0);
+  --secondary-foreground: oklch(15% 0 0);
+  --muted: oklch(96% 0 0);
+  --muted-foreground: oklch(45% 0 0);
+  --accent: oklch(96% 0 0);
+  --accent-foreground: oklch(15% 0 0);
+  --destructive: oklch(62% 0.204 25);
+  --destructive-foreground: oklch(98% 0 0);
+  --border: oklch(89% 0 0);
+  --input: oklch(89% 0 0);
+  --ring: oklch(47% 0.224 262);
+  --radius: 0.5rem;
+  --success: oklch(65% 0.15 145);
+  --success-foreground: oklch(98% 0 0);
+  --warning: oklch(75% 0.15 85);
+  --warning-foreground: oklch(15% 0 0);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@variant dark {
+  :root {
+    --background: oklch(4% 0 0);
+    --foreground: oklch(98% 0 0);
+    --card: oklch(4% 0 0);
+    --card-foreground: oklch(98% 0 0);
+    --popover: oklch(4% 0 0);
+    --popover-foreground: oklch(98% 0 0);
+    --primary: oklch(70% 0.224 262);
+    --primary-foreground: oklch(15% 0 0);
+    --secondary: oklch(15% 0 0);
+    --secondary-foreground: oklch(98% 0 0);
+    --muted: oklch(15% 0 0);
+    --muted-foreground: oklch(65% 0 0);
+    --accent: oklch(15% 0 0);
+    --accent-foreground: oklch(98% 0 0);
+    --destructive: oklch(62% 0.204 25);
+    --destructive-foreground: oklch(98% 0 0);
+    --border: oklch(27% 0 0);
+    --input: oklch(27% 0 0);
+    --ring: oklch(70% 0.224 262);
+    --success: oklch(65% 0.15 145);
+    --success-foreground: oklch(15% 0 0);
+    --warning: oklch(75% 0.15 85);
+    --warning-foreground: oklch(15% 0 0);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --border-radius: var(--radius);
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Product card hover effects */
+.product-card {
+  transition: all 0.2s ease-in-out;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Cart animation */
+@keyframes cartBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.cart-bounce {
+  animation: cartBounce 0.6s ease-in-out;
+}
+
+/* Price highlight */
+.price-highlight {
+  background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+/* Success state */
+.success-state {
+  background: linear-gradient(120deg, var(--success) 0%, oklch(70% 0.15 145) 100%);
+  color: var(--success-foreground);
+}
+
+/* Error state */
+.error-state {
+  background: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
+/* Skeleton loading */
+@keyframes skeleton {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--muted) 25%, var(--accent) 50%, var(--muted) 75%);
+  background-size: 200px 100%;
+  animation: skeleton 1.5s infinite linear;
+}
